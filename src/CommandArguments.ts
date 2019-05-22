@@ -14,7 +14,7 @@ export class CommandArguments
                 value = args[i];
             } else {
                 let split = args[i].split("=");
-                name = split.pop();
+                name = split.shift();
                 value = split.join("=");
             }
             this.add(name, value);

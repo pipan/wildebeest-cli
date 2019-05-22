@@ -2,7 +2,7 @@ import { Module } from "@wildebeest/js-modules";
 import { Container } from "inversify";
 import { CommandService } from "./CommandService";
 import { Command } from "./Command";
-import { CreateModuleCommand } from "./CreateModuleCommand";
+import { CreateModuleCommand } from "./create-module/CreateModuleCommand";
 
 export class CliModule implements Module
 {

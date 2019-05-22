@@ -1,0 +1,34 @@
+{
+  "name": "",
+  "version": "0.1.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "npm run test && babel src -d build",
+    "test": "jest",
+    "deploy": "npm run test && npm run build && git add -A && git commit -m 'build and deploy' && git push origin master",
+    "patch": "npm run deploy && npm version patch && npm publish",
+    "minor": "npm run deploy && npm version minor && npm publish",
+    "major": "npm run deploy && npm version major && npm publish"
+  },
+  "repository": {},
+  "peerDependencies": {
+    "@wildebeest/js-modules": "^0.1.0",
+    "inversify": "^5.0.1",
+    "inversify-vanillajs-helpers": "^2.0.0",
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
+    "@wildebeest/js-modules": "^0.1.6",
+    "inversify-vanillajs-helpers": "^2.0.0",
+    "inversify": "^5.0.1",
+    "jest": "^24.7.1"
+  },
+  "keywords": [],
+  "license": "MIT",
+  "babel": {
+    "presets": ["@babel/preset-env"]
+  }
+}

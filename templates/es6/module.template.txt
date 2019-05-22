@@ -1,0 +1,11 @@
+export class %ModuleName%
+{
+    getDependencies()
+    {
+        return [];
+    }
+
+    register(container) {}
+
+    boot(container) {}
+}

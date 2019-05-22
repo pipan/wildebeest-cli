@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var CommandService_1 = require("./CommandService");
-var CreateModuleCommand_1 = require("./CreateModuleCommand");
+var CreateModuleCommand_1 = require("./create-module/CreateModuleCommand");
 var CliModule = (function () {
     function CliModule() {
     }

@@ -12,7 +12,7 @@ var CommandArguments = (function () {
             }
             else {
                 var split = args[i].split("=");
-                name_1 = split.pop();
+                name_1 = split.shift();
                 value = split.join("=");
             }
             this.add(name_1, value);

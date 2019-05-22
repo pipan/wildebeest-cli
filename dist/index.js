@@ -4,6 +4,6 @@ var CliModule_1 = require("./CliModule");
 exports.CliModule = CliModule_1.CliModule;
 var CommandService_1 = require("./CommandService");
 exports.CommandService = CommandService_1.CommandService;
-var CreateModuleCommand_1 = require("./CreateModuleCommand");
+var CreateModuleCommand_1 = require("./create-module/CreateModuleCommand");
 exports.CreateModuleCommand = CreateModuleCommand_1.CreateModuleCommand;
 //# sourceMappingURL=index.js.map
