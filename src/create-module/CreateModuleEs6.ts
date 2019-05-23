@@ -23,10 +23,6 @@ export class CreateModuleEs6
             template: new FileTemplate(this.getTemplatePath("gitignore.template.txt")),
             fileName: '.gitignore'
         });
-        this.rootTemplates.push({
-            template: new FileTemplate(this.getTemplatePath("jest.template.txt")),
-            fileName: 'jest.config.js'
-        });
     }
 
     private getTemplatePath(fileName: string): string

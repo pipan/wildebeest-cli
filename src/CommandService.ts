@@ -19,9 +19,10 @@ export class CommandService
     public exec(command: string, args: Array<any>): void
     {
         if (!this.commands.has(command)) {
+            console.log("%s\x1b[33m%s\x1b[0m%s", "Command ", command, " not found.");
             return;
         }
-        console.log(args);
+        console.log("%s\x1b[34m%s\x1b[0m", "Running command ", command);
         this.commands.get(command).exec(args);
     }
 }

@@ -1,1 +1,1 @@
-export declare function run(args: Array<any>): void;
+export declare function run(args: Array<any>): Promise<void>;

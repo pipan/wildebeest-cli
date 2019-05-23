@@ -25,10 +25,6 @@ var CreateModuleEs6 = (function () {
             template: new FileTemplate_1.FileTemplate(this.getTemplatePath("gitignore.template.txt")),
             fileName: '.gitignore'
         });
-        this.rootTemplates.push({
-            template: new FileTemplate_1.FileTemplate(this.getTemplatePath("jest.template.txt")),
-            fileName: 'jest.config.js'
-        });
     }
     CreateModuleEs6.prototype.getTemplatePath = function (fileName) {
         return __dirname + "/../../templates/" + fileName;

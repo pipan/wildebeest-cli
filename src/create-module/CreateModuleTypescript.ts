@@ -1,8 +1,5 @@
-import { Command } from "../Command";
 import { injectable } from "inversify";
 import * as fs from 'fs';
-import { CommandArguments } from "../CommandArguments";
-import { CommandSchema } from "../CommandSchema";
 import { Template } from "../template/Template";
 import { FileTemplate } from "../template/FileTemplate";
 
@@ -27,7 +24,7 @@ export class CreateModuleTypescript
             fileName: '.gitignore'
         });
         this.rootTemplates.push({
-            template: new FileTemplate(this.getTemplatePath("jest.template.txt")),
+            template: new FileTemplate(this.getTemplatePath("ts/jest.template.txt")),
             fileName: 'jest.config.js'
         });
         this.rootTemplates.push({

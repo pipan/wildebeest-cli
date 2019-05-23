@@ -1,5 +1,1 @@
-{
-    "modules": {
-        "CliModule": "./index"
-    }
-}
+{"modules":{"CliModule":"./index"}}

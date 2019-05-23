@@ -14,7 +14,8 @@
     "deploy": "npm run test && npm run build && git add -A && git commit -m 'build and deploy' && git push origin master",
     "patch": "npm run deploy && npm version patch && npm publish",
     "minor": "npm run deploy && npm version minor && npm publish",
-    "major": "npm run deploy && npm version major && npm publish"
+    "major": "npm run deploy && npm version major && npm publish",
+    "postinstall": "beest install:module CliModule ./index"
   },
   "repository": {
     "type": "git",
@@ -23,7 +24,8 @@
   "dependencies": {
     "esm": "^3.2.25",
     "@wildebeest/js-modules": "^0.1.6",
-    "@types/node": "^12.0.2"
+    "@types/node": "^12.0.2",
+    "inversify": "^5.0.1"
   },
   "peerDependencies": {
     "inversify": "^5.0.1"
@@ -33,8 +35,7 @@
     "@types/jest": "^24.0.11",
     "jest": "^24.7.1",
     "ts-jest": "^24.0.2",
-    "typescript": "^3.4.3",
-    "inversify": "^5.0.1"
+    "typescript": "^3.4.3"
   },
   "keywords": [
     "wildebeest",

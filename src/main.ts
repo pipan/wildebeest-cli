@@ -3,63 +3,55 @@ import * as fs from "fs";
 import { CommandService } from './CommandService';
 import { CliModule } from './CliModule';
 
-let app: Application;
+let errors: number = 0;
 
-function getApp(): Application
+async function getModuleClasses(): Promise<Array<any>>
 {
-    app = new Application();
-    // let modules = getConfig();
+    let cliConfig: any = getConfig();
     let appModules: Array<any> = [CliModule];
-    // let dynamicLoader: Array<Promise<any>> = [];
-    // for (let key in modules) {
-    //     dynamicLoader.push(
-    //         dynamicImport(key, modules[key]).then((m: any) => {
-    //             appModules.push(m);
-    //         })
-    //     );
-        
-    // }
-    // return new Promise((resolve, reject) => {
-    //     Promise.all(dynamicLoader).then((e: any) => {
-    //         app.run(appModules);
-    //         resolve(app);
-    //     }).catch((e: any) => {
-    //         console.error("CLI main.ts getApp function");
-    //         console.error(e);
-    //         reject(e);
-    //     });
-    // });
-    app.run(appModules);
-    return app;
-}
-
-function getConfig(): Array<string>
-{
-    let modules = [];
-    if (fs.existsSync('wildebeest.cli.json')) {
-        let fileData: any = fs.readFileSync('wildebeest.cli.json');
-        let config: any = JSON.parse(fileData);
-        modules = config.modules;
-    } else {
-        throw "Config file not found";
+    for (let key in cliConfig.modules) {
+        try {
+            appModules.push(await dynamicImport(key, cliConfig.modules[key]));
+        } catch (e) {
+            errors++;
+            console.log("%s\x1b[33m%s\x1b[0m%s\x1b[33m%s\x1b[0m", "Cannot find module ", key, " in path ", cliConfig.modules[key]);
+        }
     }
-    return modules;
+    return appModules;
 }
 
-function dynamicImport(className: string, path: string): Promise<any>
+function getConfig(): any
 {
-    return import(path).then((classes: any) => {
+    let config = {modules: {}};
+    let configFilePath: string = __dirname + '/../wildebeest.cli.json';
+    if (fs.existsSync(configFilePath)) {
+        let fileData: any = fs.readFileSync(configFilePath);
+        config = JSON.parse(fileData);
+    } else {
+        throw new Error("Config file not found '" + configFilePath + "'.");
+    }
+    return config;
+}
+
+async function dynamicImport(className: string, path: string): Promise<any>
+{
+    let loadedClass: any = await import(path).then((classes: any) => {
         return classes[className];
     })
-    .catch((e: any) => {
-        console.error("CLI main.ts dynamicImport function");
-        console.error(e);
-    });
+    return loadedClass;
 }
 
-export function run(args: Array<any>)
+export async function run(args: Array<any>)
 {
-    let app: Application = getApp()
+    console.log("Loading CLI ...");
+    let app = new Application();
+    let appModules: Array<any> = await getModuleClasses();
+    app.run(appModules);
+    if (errors > 0) {
+        console.log("%s\x1b[32m%s\x1b[0m%s\x1b[33m%s\x1b[0m", "CLI ", "loaded", " with ", errors + " errors");
+    } else {
+        console.log("%s\x1b[32m%s\x1b[0m", "CLI ", "loaded");
+    }
     let commandService: CommandService = app.getContainer().get(CommandService);
     commandService.exec(args[2], args.slice(3));
 }

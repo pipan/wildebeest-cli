@@ -8,14 +8,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var inversify_1 = require("inversify");
 var fs = require("fs");
 var CommandSchema_1 = require("../CommandSchema");
 var CreateModuleTypescript_1 = require("./CreateModuleTypescript");
 var CreateModuleEs6_1 = require("./CreateModuleEs6");
+var PascalCaseFormater_1 = require("../string-formater/PascalCaseFormater");
 var CreateModuleCommand = (function () {
-    function CreateModuleCommand() {
+    function CreateModuleCommand(pascalCaseFormater) {
+        this.formater = pascalCaseFormater;
         this.schema = new CommandSchema_1.CommandSchema(["name"]);
         this.typeCreators = new Map();
         this.typeCreators.set("ts", new CreateModuleTypescript_1.CreateModuleTypescript());
@@ -30,35 +35,17 @@ var CreateModuleCommand = (function () {
         if (fs.existsSync(folderName)) {
             throw "Module already exists.";
         }
-        var moduleName = this.getPascalCase(folderName + "-module");
+        var moduleName = this.formater.format(folderName + "-module");
         var type = "ts";
         if (commandArguments.has("--type")) {
             type = commandArguments.get("--type");
         }
         this.typeCreators.get(type).create(folderName, moduleName);
     };
-    CreateModuleCommand.prototype.getPascalCase = function (text) {
-        text = text.replace(new RegExp('[^a-zA-Z]', 'g'), '-').toLowerCase();
-        var pascalCase = "";
-        var toUpper = true;
-        for (var i = 0; i < text.length; i++) {
-            if (text[i] == '-') {
-                toUpper = true;
-                continue;
-            }
-            if (toUpper) {
-                pascalCase += text[i].toUpperCase();
-                toUpper = false;
-            }
-            else {
-                pascalCase += text[i];
-            }
-        }
-        return pascalCase;
-    };
     CreateModuleCommand = __decorate([
         inversify_1.injectable(),
-        __metadata("design:paramtypes", [])
+        __param(0, inversify_1.inject("StringFormater")), __param(0, inversify_1.named("pascalCase")),
+        __metadata("design:paramtypes", [PascalCaseFormater_1.PascalCaseFormater])
     ], CreateModuleCommand);
     return CreateModuleCommand;
 }());

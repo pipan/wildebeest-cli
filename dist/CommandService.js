@@ -19,9 +19,10 @@ var CommandService = (function () {
     };
     CommandService.prototype.exec = function (command, args) {
         if (!this.commands.has(command)) {
+            console.log("%s\x1b[33m%s\x1b[0m%s", "Command ", command, " not found.");
             return;
         }
-        console.log(args);
+        console.log("%s\x1b[34m%s\x1b[0m", "Running command ", command);
         this.commands.get(command).exec(args);
     };
     CommandService = __decorate([

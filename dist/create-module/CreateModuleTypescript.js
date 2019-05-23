@@ -26,7 +26,7 @@ var CreateModuleTypescript = (function () {
             fileName: '.gitignore'
         });
         this.rootTemplates.push({
-            template: new FileTemplate_1.FileTemplate(this.getTemplatePath("jest.template.txt")),
+            template: new FileTemplate_1.FileTemplate(this.getTemplatePath("ts/jest.template.txt")),
             fileName: 'jest.config.js'
         });
         this.rootTemplates.push({

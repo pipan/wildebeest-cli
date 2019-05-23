@@ -1,0 +1,18 @@
+import { injectable } from "inversify";
+import { Command, CommandArguments, CommandSchema } from "@wildebeest/cli";
+
+@injectable()
+export class %commandClassName% implements Command
+{
+    protected schema: CommandSchema;
+
+    constructor()
+    {
+        this.schema = new CommandSchema([]);
+    }
+
+    exec(args: any): void
+    {
+        let commandArguments: CommandArguments = this.schema.parseArgs(args);
+    }
+}
