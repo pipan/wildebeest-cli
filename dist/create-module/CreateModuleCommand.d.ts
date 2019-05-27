@@ -8,5 +8,5 @@ export declare class CreateModuleCommand implements Command {
     protected typeCreators: Map<string, ModuleCreator>;
     protected formater: StringFormater;
     constructor(pascalCaseFormater: PascalCaseFormater);
-    exec(args: Array<any>): void;
+    exec(args: Array<any>): number;
 }

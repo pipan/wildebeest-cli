@@ -11,8 +11,10 @@ export class %commandClassName% implements Command
         this.schema = new CommandSchema([]);
     }
 
-    exec(args: any): void
+    exec(args: any): number
     {
         let commandArguments: CommandArguments = this.schema.parseArgs(args);
+
+        return 0;
     }
 }

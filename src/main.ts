@@ -27,8 +27,6 @@ function getConfig(): any
     if (fs.existsSync(configFilePath)) {
         let fileData: any = fs.readFileSync(configFilePath);
         config = JSON.parse(fileData);
-    } else {
-        throw new Error("Config file not found '" + configFilePath + "'.");
     }
     return config;
 }

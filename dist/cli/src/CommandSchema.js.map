@@ -1,0 +1,1 @@
+{"version":3,"file":"CommandSchema.js","sourceRoot":"","sources":["../../../src/CommandSchema.ts"],"names":[],"mappings":";;AAAA,uDAAsD;AAEtD;IAII,uBAAY,QAAuB;QAE/B,IAAI,CAAC,QAAQ,GAAG,QAAQ,CAAC;IAC7B,CAAC;IAED,iCAAS,GAAT,UAAU,IAAmB;QAEzB,OAAO,IAAI,mCAAgB,CAAC,IAAI,EAAE,IAAI,CAAC,QAAQ,CAAC,CAAC;IACrD,CAAC;IACL,oBAAC;AAAD,CAAC,AAbD,IAaC;AAbY,sCAAa"}

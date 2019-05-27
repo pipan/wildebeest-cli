@@ -14,7 +14,7 @@ export class InstallModuleCommand implements Command
         this.schema = new CommandSchema(['moduleClassName', 'pathToModule']);
     }
 
-    exec(args: any): void
+    exec(args: any): number
     {
         let commandArguments: CommandArguments = this.schema.parseArgs(args);
         let configFilePath: string = __dirname + '/../wildebeest.cli.json';
@@ -31,5 +31,6 @@ export class InstallModuleCommand implements Command
         configJson.modules[moduleName] = pathToModule;
         fs.writeFileSync(configFilePath, JSON.stringify(configJson));
         console.info("%s\x1b[32m%s\x1b[0m%s", "Module ", moduleName, " installed.");
+        return 0;
     }
 }

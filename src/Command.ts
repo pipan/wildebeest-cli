@@ -1,4 +1,4 @@
 export interface Command
 {
-    exec(args: Array<any>): void;
+    exec(args: Array<any>): number;
 }

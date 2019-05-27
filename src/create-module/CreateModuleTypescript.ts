@@ -1,13 +1,13 @@
 import { injectable } from "inversify";
 import * as fs from 'fs';
-import { Template } from "../template/Template";
-import { FileTemplate } from "../template/FileTemplate";
+import { Template, FileTemplate } from "@wildebeest/template";
 
 @injectable()
 export class CreateModuleTypescript
 {
     protected indexTemplate: Template;
     protected moduleTemplate: Template;
+    protected moduleTestTemplate: Template;
     protected rootTemplates: Array<{template: Template, fileName: string}>;
 
     constructor()
@@ -31,6 +31,8 @@ export class CreateModuleTypescript
             template: new FileTemplate(this.getTemplatePath("ts/tsconfig.template.txt")),
             fileName: 'tsconfig.json'
         });
+
+        this.moduleTestTemplate = new FileTemplate(this.getTemplatePath("ts/module.test.template.txt"));
     }
 
     private getTemplatePath(fileName: string): string
@@ -53,25 +55,8 @@ export class CreateModuleTypescript
             console.info("Creting file: " + this.rootTemplates[i].fileName);
             fs.writeFileSync(folderName + "/" + this.rootTemplates[i].fileName, this.rootTemplates[i].template.render({}));
         }
-    }
 
-    private getPascalCase(text: string): string
-    {
-        text = text.replace(new RegExp('[^a-zA-Z]', 'g'), '-').toLowerCase();
-        let pascalCase: string = "";
-        let toUpper: boolean = true;
-        for (let i = 0; i < text.length; i++) {
-            if (text[i] == '-') {
-                toUpper = true;
-                continue;
-            }
-            if (toUpper) {
-                pascalCase += text[i].toUpperCase();
-                toUpper = false;
-            } else {
-                pascalCase += text[i];   
-            }
-        }
-        return pascalCase;
+        let tests: string = folderName + "/tests";
+        fs.writeFileSync(tests + "/" + moduleName + ".test.ts", this.moduleTestTemplate.render({ModuleName: moduleName}));
     }
 }

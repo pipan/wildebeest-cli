@@ -7,5 +7,5 @@ export declare class MakeCommandCommand implements Command {
     protected fileTemplate: Template;
     protected formater: StringFormater;
     constructor(formater: StringFormater);
-    exec(args: any): void;
+    exec(args: any): number;
 }

@@ -6,6 +6,10 @@ export class CommandArguments
     {
         this.arguments = {};
 
+        if (args.length < required.length) {
+            throw new Error("Missing argument '" + required[args.length] + "'.");
+        }
+
         for (let i = 0; i < args.length; i++) {
             let name: string = "";
             let value: any = true;

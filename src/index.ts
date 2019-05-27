@@ -4,8 +4,3 @@ export { Command } from './Command';
 export { CreateModuleCommand } from './create-module/CreateModuleCommand';
 export { CommandArguments } from './CommandArguments';
 export { CommandSchema } from './CommandSchema';
-export { PascalCaseFormater } from './string-formater/PascalCaseFormater';
-export { StringFormater } from './string-formater/StringFormater';
-export { Template } from './template/Template';
-export { StringTemplate } from './template/StringTemplate';
-export { FileTemplate } from './template/FileTemplate';

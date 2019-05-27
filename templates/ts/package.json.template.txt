@@ -17,7 +17,6 @@
     "@wildebeest/js-modules": "^0.1.0"
   },
   "devDependencies": {
-    "@types/combokeys": "^2.4.6",
     "@types/jest": "^24.0.11",
     "@wildebeest/js-modules": "^0.1.6",
     "inversify": "^5.0.1",
@@ -26,5 +25,5 @@
     "typescript": "^3.4.3"
   },
   "keywords": [],
-  "license": "MIT",
+  "license": "MIT"
 }

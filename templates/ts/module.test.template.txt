@@ -1,0 +1,9 @@
+import { Application } from '@wildebeest/js-modules';
+import { %ModuleName% } from '../src';
+
+let app: Application = new Application();
+app.run([%ModuleName%]);
+
+test("register services", () => {
+    expect(app.getContainer().get(/* add service class */)).toBeInstanceOf(/* add service class */);
+})

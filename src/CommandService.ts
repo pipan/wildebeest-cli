@@ -16,13 +16,13 @@ export class CommandService
         this.commands.set(command, handler);
     }
 
-    public exec(command: string, args: Array<any>): void
+    public exec(command: string, args: Array<any>): number
     {
         if (!this.commands.has(command)) {
             console.log("%s\x1b[33m%s\x1b[0m%s", "Command ", command, " not found.");
-            return;
+            return 1;
         }
         console.log("%s\x1b[34m%s\x1b[0m", "Running command ", command);
-        this.commands.get(command).exec(args);
+        return this.commands.get(command).exec(args);
     }
 }

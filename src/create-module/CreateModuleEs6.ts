@@ -1,7 +1,6 @@
 import { injectable } from "inversify";
 import * as fs from 'fs';
-import { Template } from "../template/Template";
-import { FileTemplate } from "../template/FileTemplate";
+import { Template, FileTemplate } from "@wildebeest/template";
 
 @injectable()
 export class CreateModuleEs6

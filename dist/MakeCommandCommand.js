@@ -28,6 +28,7 @@ var MakeCommandCommand = (function () {
         var commandClassName = this.formater.format(commandName + "-command");
         fs.writeFileSync(commandClassName + ".ts", this.fileTemplate.render({ commandClassName: commandClassName }));
         console.log("%s\x1b[32m%s\x1b[0m", "File created: ", commandClassName + ".ts");
+        return 0;
     };
     MakeCommandCommand = __decorate([
         inversify_1.injectable(),

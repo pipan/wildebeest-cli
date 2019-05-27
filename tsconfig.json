@@ -13,7 +13,7 @@
         "emitDecoratorMetadata": true
     },
     "include": [
-        "src/**/*"
+        "src/**/*", "../string-format/src/string-formater", "../template/src/Template.ts", "../template/src/FileTemplate.ts"
     ],
     "exclude": [
         "node_modules"

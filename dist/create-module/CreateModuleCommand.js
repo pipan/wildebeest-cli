@@ -41,6 +41,7 @@ var CreateModuleCommand = (function () {
             type = commandArguments.get("--type");
         }
         this.typeCreators.get(type).create(folderName, moduleName);
+        return 0;
     };
     CreateModuleCommand = __decorate([
         inversify_1.injectable(),

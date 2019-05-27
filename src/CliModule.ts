@@ -4,15 +4,15 @@ import { CommandService } from "./CommandService";
 import { Command } from "./Command";
 import { CreateModuleCommand } from "./create-module/CreateModuleCommand";
 import { InstallModuleCommand } from "./InstallModuleCommand";
-import { PascalCaseFormater } from "./string-formater/PascalCaseFormater";
-import { StringFormater } from "./string-formater/StringFormater";
+import { StringFormatModule } from '@wildebeest/string';
+import { TemplateModule } from '@wildebeest/template';
 import { MakeCommandCommand } from "./MakeCommandCommand";
 
 export class CliModule implements Module
 {
     getDependencies(): Array<any>
     {
-        return [];
+        return [StringFormatModule, TemplateModule];
     }
 
     register(container: Container): void
@@ -21,8 +21,6 @@ export class CliModule implements Module
         container.bind<Command>("Command").to(CreateModuleCommand).whenTargetNamed('make:module');
         container.bind<Command>("Command").to(InstallModuleCommand).whenTargetNamed('install:module');
         container.bind<Command>("Command").to(MakeCommandCommand).whenTargetNamed('make:command');
-
-        container.bind<StringFormater>("StringFormater").to(PascalCaseFormater).inSingletonScope().whenTargetNamed("pascalCase");
     }
 
     boot(container: Container): void 
