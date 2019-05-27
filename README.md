@@ -1,19 +1,12 @@
 # Cli
 
-
+[![Build Status](https://travis-ci.com/pipan/wildebeest-cli.svg?branch=master)](https://travis-ci.com/pipan/wildebeest-cli)
 
 ## Installation
 
 ```sh
-npm install --save @wildebeest/config
+npm install -g @wildebeest/cli
 ```
-
-## Requirements
-
-It's usefull to know these libraries:
-
-* inversify
-* @wildebeest/js-modules
 
 ## Usage
 
@@ -23,3 +16,10 @@ It's usefull to know these libraries:
 let app: Application();
 app.run([KeyboardShortcutsModule]);
 ```
+
+## Create your own commands
+
+It's usefull to know these libraries:
+
+* inversify
+* @wildebeest/js-modules
